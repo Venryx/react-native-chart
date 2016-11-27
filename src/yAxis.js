@@ -3,17 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { uniqueValuesInDataSets } from './util';
 
-const styles = StyleSheet.create({
-	yAxisContainer: {
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		flex: 1,
-		paddingVertical: 0,
-		paddingRight: 5,
-		alignItems: 'flex-end',
-	},
-});
-
+import V from "./V/V";
 
 export default class YAxis extends Component<void, any, any> {
 
@@ -92,7 +82,7 @@ export default class YAxis extends Component<void, any, any> {
 	};
 
 	render() {
-		const range = [];
+		/*const range = [];
 		const data = uniqueValuesInDataSets(this.props.data || [[]], 1);
 		const steps = (data.length < this.props.verticalGridStep) ? data.length : this.props.verticalGridStep;
 		for (let i = steps; i >= 0; i--) range.push(i);
@@ -106,6 +96,31 @@ export default class YAxis extends Component<void, any, any> {
 				]}
 			>
 				{range.map(this._createLabelForYAxis)}
+			</View>
+		);*/
+
+		var {align, axisLabelColor, labelFontSize, height, yAxisWidth, style, placement, axisLineWidth,
+			legendStepsY, minY, maxY} = this.props;
+
+		return (
+			<View style={E(
+						{flexDirection: 'column', flex: 1, paddingVertical: 0, paddingRight: 5, alignItems: 'flex-end'},
+						style,
+						//placement === 'left' && { borderRightColor: axisColor, borderRightWidth: axisLineWidth },
+						//placement === 'right' && { borderLeftColor: axisColor, borderLeftWidth: axisLineWidth },
+					)}>
+				{Array(legendStepsY).fill().map((_, index)=> {
+					var travelPercent = V.GetPercentFromXToY(0, legendStepsY - 1, index);
+					travelPercent = 1 - travelPercent; // reverse, since ui has y start at top
+					let valueForTravelPercent = Math.round(V.GetValueFromXToYForPercent(minY, maxY, travelPercent));
+					return (
+						<Text key={index} style={{color: axisLabelColor, fontSize: labelFontSize, textAlign: "right",
+								position: "absolute", right: 5, bottom: travelPercent * height, transform: [{translateY: -12}],
+								width: 20, height: 20}}>
+							{valueForTravelPercent}
+						</Text>
+					);
+				})}
 			</View>
 		);
 	}

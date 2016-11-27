@@ -172,34 +172,31 @@ export default class Chart extends Component<void, any, any> {
 						return (
 							<View
 								ref="container"
-								style={[this.props.style || {}, { flex: 1, flexDirection: 'column' }]}
-								onLayout={this._onContainerLayout}
-							>
-								<View style={[styles.default, { flexDirection: 'row' }]}>
-									<View ref="yAxis">
-										<YAxis
-											{...this.props}
-											data={this.props.data}
-											height={this.state.containerHeight - this.props.xAxisHeight}
-											width={this.props.yAxisWidth}
-											minVerticalBound={this.state.bounds.min}
-											containerWidth={this.state.containerWidth}
-											maxVerticalBound={this.state.bounds.max}
-											yAxisUseDecimal={this.props.yAxisUseDecimal}
-											yAxisShortLabel={this.props.yAxisShortLabel}
-											style={{ width: this.props.yAxisWidth }}
-										/>
-									</View>
+								style={[this.props.style || {}, { flex: 1, flexDirection: 'row' }]}
+								onLayout={this._onContainerLayout}>
+								<View ref="yAxis">
+									<YAxis
+										{...this.props}
+										data={this.props.data}
+										height={this.state.containerHeight - this.props.xAxisHeight}
+										width={this.props.yAxisWidth}
+										minVerticalBound={this.state.bounds.min}
+										containerWidth={this.state.containerWidth}
+										maxVerticalBound={this.state.bounds.max}
+										yAxisUseDecimal={this.props.yAxisUseDecimal}
+										yAxisShortLabel={this.props.yAxisShortLabel}
+										style={{ width: this.props.yAxisWidth }}
+									/>
+								</View>
+								<View style={[styles.default, {flex: 1, flexDirection: 'column'}]}>
 									<ChartType
 										{...this.props}
 										data={this.props.data}
 										width={this.state.containerWidth - this.props.yAxisWidth}
 										height={this.state.containerHeight - this.props.xAxisHeight}
 										minVerticalBound={this.state.bounds.min}
-										maxVerticalBound={this.state.bounds.max}
-									/>
-								</View>
-								{(() => {
+										maxVerticalBound={this.state.bounds.max}/>
+									{(() => {
 									return (
 										<View ref="xAxis">
 											<XAxis
@@ -208,11 +205,12 @@ export default class Chart extends Component<void, any, any> {
 												data={this.props.data}
 												height={this.props.xAxisHeight}
 												align={axisAlign}
-												style={{ marginLeft: this.props.yAxisWidth - 1 }}
+												//style={{ marginLeft: this.props.yAxisWidth - 1 }}
 											/>
 										</View>
 									);
 								})()}
+								</View>
 							</View>
 						);
 					}

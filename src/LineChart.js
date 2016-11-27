@@ -8,6 +8,8 @@ const AnimatedShape = Animated.createAnimatedComponent(Shape);
 import Grid from './Grid';
 import { uniqueValuesInDataSets } from './util';
 
+import V from "./V/V";
+
 const makeDataPoint = (x : number, y : number, data : any, index : number) => {
 
 	let color = (data.color[index]) ? data.color[index] : C.BLUE;
@@ -87,23 +89,27 @@ export default class LineChart extends Component<void, any, any> {
 			dataPointSet.push(makeDataPoint(0, height, this.props, index));
 
 			let beginNewPath = true;
-			currentData.forEach(([_, dataPoint], i) => {
+			//currentData.forEach(([_, dataPoint], i) => {
+				currentData.forEach(([pointX, pointY], i) => {
 
-				if (dataPoint === '') {
+				/*if (dataPoint === '') {
 					// An empty within the graph, begin new Path next non-empty datapoint
 					// beginNewPath = true;
 					return;
 				}
 
 				let _height = (minBound * scale) + (containerHeight - (dataPoint * scale));
-				if (_height < 0) _height = 0;
+				if (_height < 0) _height = 0;*/
 
-				const x = horizontalStep * (i);
-				const y = Math.round(_height);
+				//const x = horizontalStep * (i);
+				const x = V.GetPercentFromXToY(this.props.minX, this.props.maxX, pointX) * containerWidth;
+				//const y = Math.round(_height);
+				const y = (1 - V.GetPercentFromXToY(this.props.minY, this.props.maxY, pointY)) * containerHeight;
 
 				dataPointSet.push(makeDataPoint(x, y, this.props, index));
 
-				if ((beginNewPath) && (dataPoint !== '')) {
+				//if ((beginNewPath) && (dataPoint !== '')) {
+				if (beginNewPath) {
 					pathArray.push(new Path().moveTo(x, y));
 					fillPathArray.push(new Path().moveTo(x, containerHeight).lineTo(x, height));
 					pathSubIndex++;
