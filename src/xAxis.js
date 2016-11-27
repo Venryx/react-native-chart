@@ -1,21 +1,10 @@
 /* @flow */
-'use strict';
-import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { uniqueValuesInDataSets } from './util';
+"use strict";
+import React, { Component, PropTypes } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { uniqueValuesInDataSets } from "./util";
 
-const styles = StyleSheet.create({
-	xAxisContainer: {
-		flexDirection: 'row',
-		flex: 0,
-		backgroundColor: 'transparent',
-		justifyContent: 'space-between',
-	},
-	axisText: {
-		flex: 1,
-		backgroundColor: 'transparent',
-	},
-});
+import V from "./V/V";
 
 export default class XAxis extends Component {
 
@@ -32,51 +21,28 @@ export default class XAxis extends Component {
 		xAxisTransform: PropTypes.func,
 		horizontalGridStep: PropTypes.number,
 	};
-	static defaultProps = {
-		align: 'center',
-	};
 
 	render() {
-		const data = uniqueValuesInDataSets(this.props.data || [[]], 0);
-		let transform = (d) => d;
-		if (this.props.xAxisTransform && typeof this.props.xAxisTransform === 'function') {
-			transform = this.props.xAxisTransform;
-		}
-		return (
-			<View
-				style={[
-					styles.xAxisContainer,
-					{
-						borderTopColor: this.props.axisColor,
-						borderTopWidth: this.props.axisLineWidth,
-					},
-					this.props.style,
-				]}
-			>
-			{(() => {
-				if (!this.props.showXAxisLabels) return null;
-				return data.map((d, i) => {
-					let stepsBetweenVerticalLines = this.props.horizontalGridStep ? Math.round((data.length) / this.props.horizontalGridStep + 1) : 1;
-					if (stepsBetweenVerticalLines < 1) stepsBetweenVerticalLines = 1;
-					if (i % stepsBetweenVerticalLines !== 0) return null;
-					const item = transform(d);
-					if (typeof item !== 'number' && !item) return null;
-					return (
-						<Text
-							key={i}
-							style={[
-								styles.axisText,
-								{
-									textAlign: this.props.align,
-									color: this.props.axisLabelColor,
-									fontSize: this.props.labelFontSize,
-								},
-							]}
-						>{item}</Text>
-				);
-				});
+		var {align, axisLabelColor, labelFontSize, width, height, xAxisHeight, style, placement, axisLineWidth,
+			legendStepsX, minX, maxX} = this.props;
 
-			})()}
+		return (
+			<View style={E(
+						{backgroundColor: "transparent", justifyContent: "space-between", overflow: "visible"},
+						style,
+					)}>
+				{Array(legendStepsX).fill().map((_, index)=> {
+					var travelPercent = V.GetPercentFromXToY(0, legendStepsX - 1, index);
+					let valueForTravelPercent = Math.round(V.GetValueFromXToYForPercent(minX, maxX, travelPercent));
+					return (
+						<Text key={index} style={{backgroundColor: "transparent", color: axisLabelColor,
+								fontSize: labelFontSize, textAlign: "center",
+								position: "absolute", left: (travelPercent * width) - 10, top: height - 20,
+								width: 20, height: 20}}>
+							{valueForTravelPercent}
+						</Text>
+					);
+				})}
 			</View>
 		);
 	}
