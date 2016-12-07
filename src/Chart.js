@@ -172,7 +172,7 @@ export default class Chart extends Component<void, any, any> {
 						return (
 							<View ref="container" style={[this.props.style || {}, {flex: 1, flexDirection: 'row'}]}
 								onLayout={this._onContainerLayout}>
-								<View ref="yAxis">
+								{this.props.showYAxisLabels && <View ref="yAxis">
 									<YAxis
 										{...this.props}
 										data={this.props.data}
@@ -185,7 +185,7 @@ export default class Chart extends Component<void, any, any> {
 										yAxisShortLabel={this.props.yAxisShortLabel}
 										style={{ width: this.props.yAxisWidth }}
 									/>
-								</View>
+								</View>}
 								<View style={[styles.default, {flex: 1, flexDirection: 'column'}]}>
 									<ChartType
 										{...this.props}
@@ -194,7 +194,7 @@ export default class Chart extends Component<void, any, any> {
 										height={this.state.containerHeight - this.props.xAxisHeight}
 										minVerticalBound={this.state.bounds.min}
 										maxVerticalBound={this.state.bounds.max}/>
-									{(() => {
+									{this.props.showXAxisLabels && (() => {
 									return (
 										<View ref="xAxis">
 											<XAxis
