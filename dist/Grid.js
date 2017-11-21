@@ -68,4 +68,10 @@ function(){
 if(_this2.props.hideVerticalGridLines)return null;
 return (
 _react2.default.createElement(_reactNative.View,{style:{flexDirection:'row',position:'absolute',justifyContent:'space-around'},__source:{fileName:_jsxFileName,lineNumber:70}},
-verticalRange.map(function(_,i){return _react2.default.createElement(_reactNative.View,{key:i,style:verticalGridStyle,__source:{fileName:_jsxFileName,lineNumber:71}});})));}()));}}]);return Grid;}(_react.Component);Grid.propTypes={showGrid:_react.PropTypes.bool,data:_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.array)).isRequired,verticalGridStep:_react.PropTypes.number.isRequired,horizontalGridStep:_react.PropTypes.number,gridLineWidth:_react.PropTypes.number,gridColor:_react.PropTypes.oneOfType([_react.PropTypes.number,_react.PropTypes.string]),hideHorizontalGridLines:_react.PropTypes.bool,hideVerticalGridLines:_react.PropTypes.bool,height:_react.PropTypes.number,width:_react.PropTypes.number,type:_react.PropTypes.oneOf(['line','bar','pie']).isRequired};Grid.defaultProps={};exports.default=Grid;
+verticalRange.map(function(_,i){return _react2.default.createElement(_reactNative.View,{key:i,style:verticalGridStyle,__source:{fileName:_jsxFileName,lineNumber:71}});})));}()));}}]);return Grid;}(_react.Component);
+
+// custom removed
+//Grid.propTypes={showGrid:_react.PropTypes.bool,data:_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.array)).isRequired,verticalGridStep:_react.PropTypes.number.isRequired,horizontalGridStep:_react.PropTypes.number,gridLineWidth:_react.PropTypes.number,gridColor:_react.PropTypes.oneOfType([_react.PropTypes.number,_react.PropTypes.string]),hideHorizontalGridLines:_react.PropTypes.bool,hideVerticalGridLines:_react.PropTypes.bool,height:_react.PropTypes.number,width:_react.PropTypes.number,type:_react.PropTypes.oneOf(['line','bar','pie']).isRequired};
+
+
+Grid.defaultProps={};exports.default=Grid;

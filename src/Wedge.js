@@ -32,15 +32,15 @@ const { Shape, Path } = ART;
  * ReactART components, it must be used in a <Surface>.
  */
 export default class Wedge extends Component<void, any, any> {
-
-	static propTypes = {
+	// custom removed (same with other files in folder)
+	/*static propTypes = {
 		outerRadius: PropTypes.number.isRequired,
 		startAngle: PropTypes.number.isRequired,
 		endAngle: PropTypes.number.isRequired,
 		originX: PropTypes.number.isRequired,
 		originY: PropTypes.number.isRequired,
 		innerRadius: PropTypes.number,
-	};
+	};*/
 
 
 	constructor(props : any) {
