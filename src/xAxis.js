@@ -8,7 +8,7 @@ import V from "./V/V";
 
 export default class XAxis extends Component {
 
-	static propTypes = {
+	/*static propTypes = {
 		axisColor: PropTypes.any.isRequired,
 		axisLabelColor: PropTypes.any.isRequired,
 		axisLineWidth: PropTypes.number.isRequired,
@@ -20,7 +20,7 @@ export default class XAxis extends Component {
 		labelFontSize: PropTypes.number.isRequired,
 		xAxisTransform: PropTypes.func,
 		horizontalGridStep: PropTypes.number,
-	};
+	};*/
 
 	render() {
 		var {align, axisLabelColor, labelFontSize, width, height, xAxisHeight, style, placement, axisLineWidth,

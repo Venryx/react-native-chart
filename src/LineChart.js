@@ -125,9 +125,9 @@ export default class LineChart extends Component<void, any, any> {
 
 		var multipleLines = dataPoints.map( (dataPointSet, index) => {
 			let color = (this.props.color[index]) ? this.props.color[index] : C.BLUE;
-			let allDisjointPaths = path[index].map( (singlePath) => {
+			let allDisjointPaths = path[index].map( (singlePath, subIndex) => {
 				return (
-					<AnimatedShape d={singlePath} stroke={this.props.color[index] || C.BLUE} strokeWidth={this.props.lineWidth} />
+					<AnimatedShape key={`line_${index}_${subIndex}`} d={singlePath} stroke={this.props.color[index] || C.BLUE} strokeWidth={this.props.lineWidth} />
 				);
 			});
 			return allDisjointPaths;
@@ -136,7 +136,7 @@ export default class LineChart extends Component<void, any, any> {
 		var multipleFills = dataPoints.map( (dataPointSet, index) => {
 			let allDisjointPaths = fillPath[index].map ( (singlePath, subIndex) => {
 				return (
-					<AnimatedShape d={singlePath} fill={this.props.fillColor} />
+					<AnimatedShape key={`fill_${index}_${subIndex}`} d={singlePath} fill={this.props.fillColor} />
 				);
 			});
 			return allDisjointPaths;
@@ -159,7 +159,7 @@ export default class LineChart extends Component<void, any, any> {
 					var multipleDataPoints = dataPoints.map( (dataPointSet, index) => {
 						let totalDataSet = dataPointSet.map((d, i) => {
 							return (
-								<Circle key={i} {...d} onPress={()=>alert(i)} />
+								<Circle key={`point_${index}_${i}`} {...d} onPress={()=>alert(i)} />
 							);
 						});
  						return totalDataSet;

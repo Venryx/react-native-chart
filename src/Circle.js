@@ -5,14 +5,14 @@ const { Path, Shape } = ART;
 import * as C from './constants';
 
 export default class Circle extends Component {
-	static propTypes = {
+	/*static propTypes = {
 		radius: PropTypes.number.isRequired,
 		x: PropTypes.number.isRequired,
 		y: PropTypes.number.isRequired,
 		onPress: PropTypes.func,
 		fill: PropTypes.string,
 		stroke: PropTypes.string,
-	};
+	};*/
 	static defaultProps = {
 		onPress: () => {},
 		radius: 2,

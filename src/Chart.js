@@ -234,7 +234,7 @@ export default class Chart extends Component<void, any, any> {
 	}
 }
 
-Chart.propTypes = {
+/*Chart.propTypes = {
 	// Shared properties between most types
 	// data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.array)).isRequired,
 	type: PropTypes.oneOf(['line', 'bar', 'pie']).isRequired,
@@ -291,3 +291,4 @@ Chart.propTypes = {
 	yAxisTransform: PropTypes.func,
 	yAxisWidth: PropTypes.number,
 };
+*/

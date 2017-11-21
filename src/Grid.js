@@ -5,7 +5,7 @@ import { uniqueValuesInDataSets } from './util';
 import V from "./V/V";
 
 export default class Grid extends Component {
-	static propTypes = {
+	/*static propTypes = {
 		showGrid: PropTypes.bool,
 		data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.array)).isRequired,
 		verticalGridStep: PropTypes.number.isRequired,
@@ -17,7 +17,7 @@ export default class Grid extends Component {
 		height: PropTypes.number,
 		width: PropTypes.number,
 		type: PropTypes.oneOf(['line', 'bar', 'pie']).isRequired,
-	};
+	};*/
 	static defaultProps = {
 
 	};
@@ -69,7 +69,7 @@ export default class Grid extends Component {
 					var travelPercent = V.GetPercentFromXToY(0, legendStepsX - 1, index);
 					//if (index == 0) return;
 					return (
-						<View key={index}
+						<View key={`x_${index}`}
 							style={{
 								position: "absolute", left: travelPercent * gridWidth, top: 0,
 								width: 1, height: gridHeight, backgroundColor: this.props.gridColor,
@@ -81,7 +81,7 @@ export default class Grid extends Component {
 					var travelPercent = V.GetPercentFromXToY(0, legendStepsY - 1, index);
 					//if (index == 0 || index == legendStepsY - 1) return;
 					return (
-						<View key={index}
+						<View key={`y_${index}`}
 							style={{
 								position: "absolute", left: 0, top: travelPercent * gridHeight,
 								width: gridWidth, height: 1, backgroundColor: this.props.gridColor,

@@ -7,7 +7,7 @@ import V from "./V/V";
 
 export default class YAxis extends Component<void, any, any> {
 
-	static propTypes = {
+	/*static propTypes = {
 		axisColor: PropTypes.any,
 		axisLineWidth: PropTypes.number,
 		data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.array)).isRequired,
@@ -17,7 +17,7 @@ export default class YAxis extends Component<void, any, any> {
 		yAxisTransform: PropTypes.func,
 		yAxisUseDecimal: PropTypes.bool,
 		yAxisShortLabel: PropTypes.bool
-	};
+	};*/
 
 	static defaultProps : any = {
 		placement: "left",
